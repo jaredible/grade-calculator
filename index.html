@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,8 +37,10 @@
                     <p>You only need to input the exact scores you have in Canvas (e.g., 90, 100, etc.). Decimals and percents will not work. I've also changed the max project score from 10 to 15 (e.g., use 15 if you got a perfect score on a project).</p>
                 </div>
                 <div class="ui form">
-                    <h2 class="ui header">Known grades</h2>
-                    <div class="ui segment">
+                    <div class="ui top attached message">
+                        <h2 class="ui header">Known grades</h2>
+                    </div>
+                    <div class="ui bottom attached segment">
                         <div class="ui container">
                             <h3 class="ui header"><i>Homework grades.</i></h3>
                             <div class="ui two fields">
@@ -98,8 +101,10 @@
                             </div>
                         </div>
                     </div>
-                    <h2 class="ui header">Expected grades</h2>
-                    <div class="ui segment">
+                    <div class="ui top attached message">
+                        <h2 class="ui header">Expected grades</h2>
+                    </div>
+                    <div class="ui bottom attached segment">
                         <div class="ui four fields">
                             <div class="ui field">
                                 <label for="expectedHomework3Grade">Homework 3 grade.</label>
@@ -149,6 +154,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.2/dist/semantic.min.js"></script>
+        <script type="text/javascript" color="0,128,128" opacity='1' zIndex="-1" count="99" src="canvas-nest.js"></script>
         <script src="main.js"></script>
     </body>
 </html>
