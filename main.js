@@ -1,6 +1,6 @@
-var DEBUG = true;
 var isProduction = window.location.href.indexOf("jaredible.net") >= 0;
 var APIURL = isProduction ? "https://api.jaredible.net" : "http://localhost:8888";
+var DEBUG = !isProduction;
 
 // known grades
 // homeworks
