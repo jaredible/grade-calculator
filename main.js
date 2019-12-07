@@ -144,9 +144,9 @@ function getCalculations() {
     }
 
     return {
-        "extraCredit": extraCredit,
-        "totalGrades": totalGrades,
-        "overallGrade": overallGrade
+        extraCredit,
+        totalGrades,
+        overallGrade
     };
 }
 
