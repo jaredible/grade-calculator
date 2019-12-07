@@ -2,6 +2,36 @@ var isProduction = window.location.href.indexOf("jaredible.net") >= 0;
 var APIURL = isProduction ? "https://api.jaredible.net" : "http://localhost:8888";
 var DEBUG = !isProduction;
 
+// pointsPer
+var pointsPerHomework = 100;
+var pointsPerQuiz = 30;
+var pointsPerTest = 100;
+var pointsPerProject = 15;
+
+// weights
+// homeworks
+var weightHomework1 = 0.08;
+var weightHomework2 = 0.08;
+var weightHomework3 = 0.08;
+// quizzes
+var weightQuiz1 = 0.02;
+var weightQuiz2 = 0.02;
+var weightQuiz3 = 0.02;
+var weightQuiz4 = 0.02;
+// tests
+var weightTest1 = 0.12;
+var weightTest2 = 0.12;
+var weightTest3 = 0.13;
+// projects
+var weightProject1 = 0.15;
+var weightProject2 = 0.15;
+
+// extra credit
+var extraCreditProject1 = 0.01;
+var extraCreditProject2 = 0.01;
+var extraCreditProject3 = 0.03;
+var extraCreditEvaluation = 0.01;
+
 // known grades
 // homeworks
 var inputKnownHomework1Grade = $("#knownHomework1Grade");
@@ -102,12 +132,12 @@ function getCalculations() {
         console.log(" --- Pre calculate --- ");
     }
 
-    var pointsPer = [100, 30, 100, 15];
+    var pointsPer = [pointsPerHomework, pointsPerQuiz, pointsPerTest, pointsPerProject];
     var weights = [
-        [0.08, 0.08, 0.08],
-        [0.02, 0.02, 0.02, 0.02],
-        [0.12, 0.12, 0.14],
-        [0.15, 0.15]
+        [weightHomework1, weightHomework2, weightHomework3],
+        [weightQuiz1, weightQuiz2, weightQuiz3, weightQuiz4],
+        [weightTest1, weightTest2, weightTest3],
+        [weightProject1, weightProject2]
     ];
     var grades = [
         [valueKnownHomework1Grade, valueKnownHomework2Grade, valueExpectedHomework3Grade],
@@ -156,7 +186,7 @@ $("#calculateButton").click(function() {
     var totalGrades = calculations.totalGrades;
     var overallGrade = calculations.overallGrade;
 
-    var message = "";
+    var message = "<strong>Percentages:</strong><br>";
     message += "Total extra credit: <strong>" + Number(extraCredit * 100).toFixed(2) + "%</strong><br>";
     message += "Total homework grade: <strong>" + Number(totalGrades[0] * 100).toFixed(2) + "%</strong><br>";
     message += "Total quiz grade: <strong>" + Number(totalGrades[1] * 100).toFixed(2) + "%</strong><br>";
