@@ -67,20 +67,47 @@ function getCalculations() {
 
     // known grades
     // homeworks
-    var valueKnownHomework1Grade = inputKnownHomework1Grade.val() | 0;
-    var valueKnownHomework2Grade = inputKnownHomework2Grade.val() | 0;
+    var valueKnownHomework1Grade = inputKnownHomework1Grade.val();
+    var valueKnownHomework2Grade = inputKnownHomework2Grade.val();
     // quizzes
-    var valueKnownQuiz1Grade = inputKnownQuiz1Grade.val() | 0;
-    var valueKnownQuiz2Grade = inputKnownQuiz2Grade.val() | 0;
-    var valueKnownQuiz3Grade = inputKnownQuiz3Grade.val() | 0;
+    var valueKnownQuiz1Grade = inputKnownQuiz1Grade.val();
+    var valueKnownQuiz2Grade = inputKnownQuiz2Grade.val();
+    var valueKnownQuiz3Grade = inputKnownQuiz3Grade.val();
     // tests
-    var valueKnownTest1Grade = inputKnownTest1Grade.val() | 0;
-    var valueKnownTest2Grade = inputKnownTest2Grade.val() | 0;
+    var valueKnownTest1Grade = inputKnownTest1Grade.val();
+    var valueKnownTest2Grade = inputKnownTest2Grade.val();
     // projects
-    var valueKnownProject1Grade = inputKnownProject1Grade.val() | 0;
+    var valueKnownProject1Grade = inputKnownProject1Grade.val();
     // extra credit
     var valueKnownProject1ExtraCredit = inputKnownProject1ExtraCredit.prop("checked") ? 0.01 : 0;
     var valueKnownProject2ExtraCredit = inputKnownProject2ExtraCredit.prop("checked") ? 0.01 : 0;
+
+    if (!valueKnownHomework1Grade) {
+        $("#knownHomework1Field").addClass("error");
+    }
+    if (!valueKnownHomework2Grade) {
+        $("#knownHomework2Field").addClass("error");
+    }
+    if (!valueKnownQuiz1Grade) {
+        $("#knownQuiz1Field").addClass("error");
+    }
+    if (!valueKnownQuiz2Grade) {
+        $("#knownQuiz2Field").addClass("error");
+    }
+    if (!valueKnownQuiz3Grade) {
+        $("#knownQuiz3Field").addClass("error");
+    }
+    if (!valueKnownTest1Grade) {
+        $("#knownTest1Field").addClass("error");
+    }
+    if (!valueKnownTest2Grade) {
+        $("#knownTest2Field").addClass("error");
+    }
+    if (!valueKnownProject1Grade) {
+        $("#knownProject1Field").addClass("error");
+    }
+
+    var validKnowns = !(!valueKnownHomework1Grade || !valueKnownHomework2Grade || !valueKnownQuiz1Grade || !valueKnownQuiz2Grade || !valueKnownQuiz3Grade || !valueKnownTest1Grade || !valueKnownTest2Grade || !valueKnownProject1Grade);
 
     if (DEBUG) {
         console.log(" --- Pre get known grades --- ");
@@ -91,12 +118,27 @@ function getCalculations() {
     }
 
     // expected grades
-    var valueExpectedHomework3Grade = inputExpectedHomework3Grade.val() | 0;
-    var valueExpectedQuiz4Grade = inputExpectedQuiz4Grade.val() | 0;
-    var valueExpectedTest3Grade = inputExpectedTest3Grade.val() | 0;
-    var valueExpectedProject2Grade = inputExpectedProject2Grade.val() | 0;
+    var valueExpectedHomework3Grade = inputExpectedHomework3Grade.val();
+    var valueExpectedQuiz4Grade = inputExpectedQuiz4Grade.val();
+    var valueExpectedTest3Grade = inputExpectedTest3Grade.val();
+    var valueExpectedProject2Grade = inputExpectedProject2Grade.val();
     var valueExpectedProject3ExtraCredit = inputExpectedProject3ExtraCredit.prop("checked") ? 0.03 : 0;
     var valueExpectedEvaluationExtraCredit = inputExpectedEvaluationExtraCredit.prop("checked") ? 0.01 : 0;
+
+    if (!valueExpectedHomework3Grade) {
+        $("#expectedHomework3Field").addClass("error");
+    }
+    if (!valueExpectedQuiz4Grade) {
+        $("#expectedQuiz4Field").addClass("error");
+    }
+    if (!valueExpectedTest3Grade) {
+        $("#expectedTest3Field").addClass("error");
+    }
+    if (!valueExpectedProject2Grade) {
+        $("#expectedProject2Field").addClass("error");
+    }
+
+    var validExpectations = !(!valueExpectedHomework3Grade || !valueExpectedQuiz4Grade || !valueExpectedTest3Grade || !valueExpectedProject2Grade);
 
     if (DEBUG) {
         console.log(" --- Post get expected grades --- ");
@@ -119,6 +161,7 @@ function getCalculations() {
         // extra credit
         console.log("Known project 1 extra credit: " + valueKnownProject1ExtraCredit);
         console.log("Known project 2 extra credit: " + valueKnownProject2ExtraCredit);
+        console.log("Valid knowns: " + validKnowns);
         // expected grades
         console.log("Expected homework 3 grade: " + valueExpectedHomework3Grade);
         console.log("Expected quiz 4 grade: " + valueExpectedQuiz4Grade);
@@ -126,6 +169,7 @@ function getCalculations() {
         console.log("Expected project 2 grade: " + valueExpectedProject2Grade);
         console.log("Expected project 3 extra credit: " + valueExpectedProject3ExtraCredit);
         console.log("Expected evaluation extra credit: " + valueExpectedEvaluationExtraCredit);
+        console.log("Valid expectations: " + validExpectations);
     }
 
     if (DEBUG) {
@@ -176,7 +220,8 @@ function getCalculations() {
     return {
         extraCredit,
         totalGrades,
-        overallGrade
+        overallGrade,
+        valid: validKnowns && validExpectations
     };
 }
 
@@ -185,22 +230,25 @@ $("#calculateButton").click(function() {
     var extraCredit = calculations.extraCredit;
     var totalGrades = calculations.totalGrades;
     var overallGrade = calculations.overallGrade;
+    var valid = calculations.valid;
 
-    var message = "<strong>Percentages:</strong><br>";
-    message += "Total extra credit: <strong>" + Number(extraCredit * 100).toFixed(2) + "%</strong><br>";
-    message += "Total homework grade: <strong>" + Number(totalGrades[0] * 100).toFixed(2) + "%</strong><br>";
-    message += "Total quiz grade: <strong>" + Number(totalGrades[1] * 100).toFixed(2) + "%</strong><br>";
-    message += "Total test grade: <strong>" + Number(totalGrades[2] * 100).toFixed(2) + "%</strong><br>";
-    message += "Total project grade: <strong>" + Number(totalGrades[3] * 100).toFixed(2) + "%</strong><br>";
-    message += "Overall grade: <strong>" + Number(overallGrade * 100).toFixed(2) + "%</strong><br>";
+    if (valid) {
+        var message = "<strong>Percentages:</strong><br>";
+        message += "Total extra credit: <strong>" + Number(extraCredit * 100).toFixed(2) + "%</strong><br>";
+        message += "Total homework grade: <strong>" + Number(totalGrades[0] * 100).toFixed(2) + "%</strong><br>";
+        message += "Total quiz grade: <strong>" + Number(totalGrades[1] * 100).toFixed(2) + "%</strong><br>";
+        message += "Total test grade: <strong>" + Number(totalGrades[2] * 100).toFixed(2) + "%</strong><br>";
+        message += "Total project grade: <strong>" + Number(totalGrades[3] * 100).toFixed(2) + "%</strong><br>";
+        message += "Overall grade: <strong>" + Number(overallGrade * 100).toFixed(2) + "%</strong><br>";
 
-    $("body").toast({
-        displayTime: "auto",
-        showProgress: "top",
-        classProgress: "blue",
-        position: "top right",
-        message: message
-    });
+        $("body").toast({
+            displayTime: "auto",
+            showProgress: "top",
+            classProgress: "blue",
+            position: "top right",
+            message: message
+        });
+    }
 });
 
 $(".message .close").click(function() {
