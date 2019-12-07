@@ -28,7 +28,7 @@ var inputExpectedEvaluationExtraCredit = $("#expectedEvaluationExtraCredit");
 
 function getCalculations() {
     if (DEBUG) {
-        console.log(" --- Pre calculate() call --- ");
+        console.log(" --- Pre getCalculations() call --- ");
     }
 
     if (DEBUG) {
@@ -140,7 +140,7 @@ function getCalculations() {
     }
 
     if (DEBUG) {
-        console.log(" --- Post calculate() call --- ");
+        console.log(" --- Post getCalculations() call --- ");
     }
 
     return {
