@@ -9,6 +9,10 @@ h1 {
     text-align: center;
 }
 
+.ui.field label {
+    padding-left: calc(5px * 4);
+}
+
 #buttonContainer {
     text-align: center;
 }
