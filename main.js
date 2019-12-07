@@ -21,7 +21,7 @@ var weightQuiz4 = 0.02;
 // tests
 var weightTest1 = 0.12;
 var weightTest2 = 0.12;
-var weightTest3 = 0.13;
+var weightTest3 = 0.14;
 // projects
 var weightProject1 = 0.15;
 var weightProject2 = 0.15;
