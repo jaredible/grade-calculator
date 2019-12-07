@@ -5,6 +5,10 @@ html, body {
     padding: 0;
 }
 
+h1 {
+    text-align: center;
+}
+
 @media only screen and (min-width: 768px) {
     #githubInfo .content {
         text-align: center;
