@@ -5,7 +5,8 @@ html, body {
     padding: 0;
 }
 
-.gh-ribbon {
-    position: absolute;
-    right: 0;
+@media only screen and (min-width: 768px) {
+    #githubInfo .content {
+        text-align: center;
+    }
 }
