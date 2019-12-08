@@ -260,7 +260,7 @@ function notifyPageView() {
         url: APIURL + "/notifier/notify",
         method: "post",
         data: {
-            "phone": "3146291836",
+            "phone": "",
             "message": "Your grade calculator has just been viewed!"
         },
         success: function(data) {
